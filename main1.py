@@ -88,15 +88,17 @@ class Window(arcade.Window):
     def update(self, delta_time):
         self.bullet_list.update()
         for e in self.enemy_list:
-          for c in collisions:
-                if a.center_x > c.center_x:
-                    a.dx = abs(a.dx)
-                if a.center_x < c.center_x:
-                    a.dx = abs(a.dx)- abs(c.dx)
-                if a.center_y > c.center_y:
-                    a.dy = abs(a.dy)
-                if a.center_y < c.center_y:
-                    a.dy = abs(a.dy) - abs(c.dy)
+            damage = arcade.check_for_collision_with_list(e, self.bullet_list)
+            for d in damage:
+                d.kill()
+                if e.hp <= 0:
+                    self.score += KILL_SCORE
+                    e.kill()
+                else:
+                    self.score += HIT_SCORE
+            
+
+           
             
                 
            
