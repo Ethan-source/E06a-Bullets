@@ -90,13 +90,13 @@ class Window(arcade.Window):
         for e in self.enemy_list:
             damage = arcade.check_for_collision_with_list(e, self.bullet_list)
             for d in damage:
+                e.hp = e.hp -d.damage
                 d.kill()
-                if e.hp <= 0:
-                    self.score += KILL_SCORE
+                if e.hp < 0
                     e.kill()
+                    self.score = self.score + KILL_SCORE
                 else:
-                    self.score += HIT_SCORE
-            
+                    self.score = self.score + HIT_SCORE
 
            
             
