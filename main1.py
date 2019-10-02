@@ -15,7 +15,7 @@ SCREEN_TITLE = "Bullet exercise"
 
 NUM_ENEMIES = 5
 STARTING_LOCATION = (400,100)
-BULLET_DAMAGE = 10
+BULLET_DAMAGE = 50
 ENEMY_HP = 100
 HIT_SCORE = 10
 KILL_SCORE = 100
@@ -92,7 +92,7 @@ class Window(arcade.Window):
             for d in damage:
                 e.hp = e.hp -d.damage
                 d.kill()
-                if e.hp < 0
+                if e.hp < 0:
                     e.kill()
                     self.score = self.score + KILL_SCORE
                 else:
