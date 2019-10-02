@@ -88,11 +88,18 @@ class Window(arcade.Window):
     def update(self, delta_time):
         self.bullet_list.update()
         for e in self.enemy_list:
-            x= self.player.center_x
-            y= self.player.center_y + 15
-            bullet = Bullet ((x,y),(0,10),BULLET_DAMAGE)
-            self.bullet_list.append(bullet)
-            pass
+          for c in collisions:
+                if a.center_x > c.center_x:
+                    a.dx = abs(a.dx)
+                if a.center_x < c.center_x:
+                    a.dx = abs(a.dx)- abs(c.dx)
+                if a.center_y > c.center_y:
+                    a.dy = abs(a.dy)
+                if a.center_y < c.center_y:
+                    a.dy = abs(a.dy) - abs(c.dy)
+            
+                
+           
 
     def on_draw(self):
         arcade.start_render()
@@ -109,9 +116,10 @@ class Window(arcade.Window):
 
     def on_mouse_press(self, x, y, button, modifiers):
         if button == arcade.MOUSE_BUTTON_LEFT:
-            #fire a bullet
-            #the pass statement is a placeholder. Remove line 97 when you add your code
-            pass
+            x= self.player.center_x
+            y= self.player.center_y + 15
+            bullet = Bullet ((x,y),(0,10),BULLET_DAMAGE)
+            self.bullet_list.append(bullet)
 
 def main():
     window = Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
